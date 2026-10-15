@@ -1,4 +1,6 @@
-import java.util.Scanner;
+package agh.po.lab1;
+
+import agh.po.lab2.Lotto;
 
 public class Main {
     public static void hello() {
@@ -37,8 +39,6 @@ public class Main {
         tree(height);
         System.out.println();
         System.out.println();
-        System.out.println("Zadanie 3:");
-        Lotto.print_numbers(6);
     }
 
 }
