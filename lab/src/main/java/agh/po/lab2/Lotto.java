@@ -18,14 +18,16 @@ public class Lotto {
         return numbers;
     }
 
-    public static void printNumbers(ArrayList<Integer> numbers) {
-        System.out.print("[");
+    public static String printNumbers(ArrayList<Integer> numbers) {
+        String result = "";
+        result += "[";
         for (int i = 0; i < numbers.size(); i++) {
-            System.out.print(numbers.get(i));
+            result += numbers.get(i);
             if (i != numbers.size() - 1)
-                System.out.print(", ");
+                result += ", ";
         }
-        System.out.print("]\n");
+        result += "]\n";
+        return result;
     }
 
     public static void win(ArrayList<Integer> yourNumbers) {
@@ -43,13 +45,12 @@ public class Lotto {
             generatedNum = generate(6);
         }
         double endTime = System.nanoTime();
-        System.out.printf("Wylosowano zwycięskie liczby po %s próbach: ", rerolls);
-        printNumbers(yourNumbers);
+        System.out.printf("Wylosowano zwycięskie liczby po %s próbach: %s", rerolls, printNumbers(yourNumbers));
         System.out.printf("Zajęło to %fs\n", (endTime - startTime) / Math.pow(10, 9));
     }
 
     public static void main(String[] args) {
-        ArrayList<Integer> yourNumbers = new ArrayList<>(),yourNumbersCopy;
+        ArrayList<Integer> yourNumbers = new ArrayList<>(), yourNumbersCopy;
         for (String arg : args) {
             int number = Integer.parseInt(arg);
             if (number < 1 || number > 49) {
@@ -60,11 +61,9 @@ public class Lotto {
         }
         yourNumbersCopy = new ArrayList<>(yourNumbers);
 
-        System.out.print("Twoje liczby: ");
-        printNumbers(yourNumbers);
-        System.out.print("Wylosowane liczby: ");
+        System.out.printf("Twoje liczby: %s", printNumbers(yourNumbersCopy));
         ArrayList<Integer> generatedNum = generate(6);
-        printNumbers(generatedNum);
+        System.out.printf("Wylosowane liczby: %s", printNumbers(generatedNum));
         yourNumbers.retainAll(generatedNum);
         System.out.printf("Liczba trafień: %s\n\n", yourNumbers.size());
         yourNumbers.clear();
