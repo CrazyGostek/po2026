@@ -95,5 +95,3 @@ Kategoria D: Systemy specjalistyczne i domenowe (Idealne na diagramy przypadków
 Kategoria E: Propozycje własne studentów.
 
 (Miejsce na własne tematy - dopiszcie temat i swoje imiona i nazwiska poniżej, zgodnie z zasadami zapisu z README.md)
-
-System Zarządzania Operacjami Płytowymi Lotniska: Miłosz Klasa, Paweł Kulik
