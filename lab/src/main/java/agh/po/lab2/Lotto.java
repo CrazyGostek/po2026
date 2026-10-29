@@ -9,7 +9,7 @@ public class Lotto {
         ArrayList<Integer> numbers = new ArrayList<Integer>();
         int number;
         for (int i = 0; i < length; i++) {
-            number = random.nextInt(1, 49);
+            number = random.nextInt(1, 50);
             if (!numbers.contains(number))
                 numbers.add(number);
             else
@@ -18,45 +18,55 @@ public class Lotto {
         return numbers;
     }
 
-    public static void print_numbers(ArrayList<Integer> numbers) {
-        System.out.print("[");
-        for(int number : numbers) {
-            System.out.print(number);
-            if(number != numbers.getLast())
-                System.out.print(", ");
+    public static String printNumbers(ArrayList<Integer> numbers) {
+        String result = "";
+        result += "[";
+        for (int i = 0; i < numbers.size(); i++) {
+            result += numbers.get(i);
+            if (i != numbers.size() - 1)
+                result += ", ";
         }
-        System.out.print("]\n");
+        result += "]\n";
+        return result;
     }
 
-    public static void win(ArrayList<Integer> yourNumbers){
+    public static void win(ArrayList<Integer> yourNumbers) {
         double startTime = System.nanoTime();
+        int rerolls = 0, matches = 0;
         ArrayList<Integer> generatedNum = generate(6);
-        while(generatedNum.size()!=6){
-            generatedNum.retainAll(yourNumbers);
-            if(generatedNum.size()==6)
+        while (true) {
+            rerolls++;
+            for (int num : yourNumbers)
+                if (generatedNum.contains(num))
+                    matches++;
+            if (matches == 6)
                 break;
+            matches = 0;
             generatedNum = generate(6);
         }
         double endTime = System.nanoTime();
-        System.out.print("Wylosowano zwycięskie liczby: ");
-        print_numbers(yourNumbers);
-        System.out.printf("Zajęło to %e", endTime-startTime);
-        System.out.println();
+        System.out.printf("Wylosowano zwycięskie liczby po %s próbach: %s", rerolls, printNumbers(yourNumbers));
+        System.out.printf("Zajęło to %fs\n", (endTime - startTime) / Math.pow(10, 9));
     }
 
     public static void main(String[] args) {
-        ArrayList<Integer> yourNumbers = new ArrayList<>();
-        for (String arg : args) yourNumbers.add(Integer.parseInt(arg));
-        System.out.print("Twoje liczby: ");
-        print_numbers(yourNumbers);
-        System.out.print("Wylosowane liczby: ");
+        ArrayList<Integer> yourNumbers = new ArrayList<>(), yourNumbersCopy;
+        for (String arg : args) {
+            int number = Integer.parseInt(arg);
+            if (number < 1 || number > 49) {
+                System.out.println("Wprowadzono złe liczby!");
+                return;
+            }
+            yourNumbers.add(number);
+        }
+        yourNumbersCopy = new ArrayList<>(yourNumbers);
+
+        System.out.printf("Twoje liczby: %s", printNumbers(yourNumbersCopy));
         ArrayList<Integer> generatedNum = generate(6);
-        print_numbers(generatedNum);
+        System.out.printf("Wylosowane liczby: %s", printNumbers(generatedNum));
         yourNumbers.retainAll(generatedNum);
-        System.out.println(("Liczba trafień: "+yourNumbers.size()));
-        System.out.println();
+        System.out.printf("Liczba trafień: %s\n\n", yourNumbers.size());
         yourNumbers.clear();
-        for (String arg : args) yourNumbers.add(Integer.parseInt(arg));
-        win(yourNumbers);
+        win(yourNumbersCopy);
     }
 }
