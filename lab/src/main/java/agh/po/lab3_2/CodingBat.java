@@ -19,6 +19,13 @@ public class CodingBat {
         return map;
     }
 
+    public static Map<String, String> mapAB(Map<String, String> map) {
+        map = new HashMap<>(map);
+        if (map.containsKey("a") && map.containsKey("b"))
+            map.put("ab", map.get("a") + map.get("b"));
+        return map;
+    }
+
 //    public Map<String, String> pairs(String[] strings) {
 //        Map<String, String> letters = new HashMap<>();
 //        for (String string : strings) {

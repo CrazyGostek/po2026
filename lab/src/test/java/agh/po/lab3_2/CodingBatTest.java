@@ -10,10 +10,17 @@ import static org.junit.Assert.*;
 
 public class CodingBatTest {
     @Test
-    public void mapAB4_() {
+    public void mapAB4() {
         assertEquals(Map.of("a", "aaa", "b", "bb", "c", "aaa"), CodingBat.mapAB4(Map.of("a", "aaa", "b", "bb", "c", "cake")));
         assertEquals(Map.of("a", "aa", "b", "bbb", "c", "bbb"), CodingBat.mapAB4(Map.of("a", "aa", "b", "bbb", "c", "cake")));
         assertEquals(Map.of("a", "aa", "b", "bbb", "c", "bbb"), CodingBat.mapAB4(Map.of("a", "aa", "b", "bbb")));
+    }
+
+    @Test
+    public void mapAB() {
+        assertEquals(Map.of("a", "Hi", "ab", "HiThere", "b", "There"), CodingBat.mapAB(Map.of("a", "Hi", "b", "There")));
+        assertEquals(Map.of("a", "Hi"), CodingBat.mapAB(Map.of("a", "Hi")));
+        assertEquals(Map.of("b", "There"), CodingBat.mapAB(Map.of("b", "There")));
     }
 
     @Test
