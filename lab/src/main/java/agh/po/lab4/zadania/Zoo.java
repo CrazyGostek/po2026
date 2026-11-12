@@ -1,9 +1,9 @@
-package lab4.zadania;
+package agh.po.lab4.zadania;
 
-import lab4.animals.Animal;
-import lab4.animals.Dog;
-import lab4.animals.Parrot;
-import lab4.animals.Snake;
+import agh.po.lab4.animals.Animal;
+import agh.po.lab4.animals.Dog;
+import agh.po.lab4.animals.Parrot;
+import agh.po.lab4.animals.Snake;
 
 import java.util.Random;
 

@@ -1,4 +1,4 @@
-package lab4.animals;
+package agh.po.lab4.animals;
 
 import java.util.Set;
 
