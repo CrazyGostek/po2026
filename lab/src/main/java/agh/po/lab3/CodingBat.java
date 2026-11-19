@@ -36,5 +36,7 @@ public class CodingBat {
     public static void main(String[] args) {
         System.out.println(frontTimes("Slopik", 5));
         System.out.println(doubleX("Sloop"));
+        System.out.println(hasBad("xxbadxx"));
+        System.out.println(fizzArray2(7));
     }
 }
